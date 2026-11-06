@@ -106,10 +106,32 @@
                         <span id="cart-badge" class="hidden absolute -top-2 -right-2 bg-fire-500 text-white text-xs font-black rounded-full w-5 h-5 flex items-center justify-center">0</span>
                     </button>
 
-                    <a href="https://wa.me/595973511110?text=Hola%20Duarte%20F%C3%A1brica%20de%20Parrillas,%20quiero%20hacer%20una%20consulta." target="_blank" rel="noopener noreferrer" class="hidden sm:flex items-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-2.5 px-4 rounded-xl shadow-lg transition-all text-sm">
-                        <i class="fa-brands fa-whatsapp text-lg"></i>
-                        <span>0973 511 110</span>
-                    </a>
+                    <!-- BOTÓN WHATSAPP ARRIBA (DESPLEGABLE) -->
+                    <div class="relative">
+                        <button onclick="toggleVendorMenu('nav-vendor-dropdown')" class="flex items-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-2.5 px-4 rounded-xl shadow-lg transition-all text-sm">
+                            <i class="fa-brands fa-whatsapp text-lg"></i>
+                            <span>Atención WhatsApp</span>
+                            <i class="fa-solid fa-chevron-down text-xs"></i>
+                        </button>
+                        <!-- Menú desplegable -->
+                        <div id="nav-vendor-dropdown" class="hidden absolute right-0 mt-2 w-56 bg-steel-900 border border-gray-700 rounded-2xl shadow-2xl p-2 z-50">
+                            <div class="text-[10px] uppercase font-bold text-gray-400 px-3 py-1">Selecciona Vendedor:</div>
+                            <a href="https://wa.me/595973511110?text=Hola%20Daniel,%20quiero%20hacer%20una%20consulta." target="_blank" class="flex items-center gap-3 p-2.5 rounded-xl hover:bg-steel-800 transition-colors text-white text-xs font-semibold">
+                                <i class="fa-brands fa-whatsapp text-emerald-400 text-base"></i>
+                                <div>
+                                    <div>Daniel</div>
+                                    <div class="text-[10px] text-gray-400">0973 511 110</div>
+                                </div>
+                            </a>
+                            <a href="https://wa.me/595987599975?text=Hola%20Matias,%20quiero%20hacer%20una%20consulta." target="_blank" class="flex items-center gap-3 p-2.5 rounded-xl hover:bg-steel-800 transition-colors text-white text-xs font-semibold">
+                                <i class="fa-brands fa-whatsapp text-emerald-400 text-base"></i>
+                                <div>
+                                    <div>Matias</div>
+                                    <div class="text-[10px] text-gray-400">0987 599 975</div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
 
                     <button onclick="toggleMobileMenu()" class="md:hidden text-gray-300 hover:text-white p-2">
                         <i class="fa-solid fa-bars text-2xl"></i>
@@ -124,10 +146,14 @@
             <a href="#catalogo" onclick="toggleMobileMenu()" class="block py-2 text-gray-300 hover:text-fire-500 font-semibold">Catálogo Completo</a>
             <a href="#envios" onclick="toggleMobileMenu()" class="block py-2 text-gray-300 hover:text-fire-500 font-semibold">Envíos y Pagos</a>
             <a href="#reserva" onclick="toggleMobileMenu()" class="block py-2 text-gray-300 hover:text-fire-500 font-semibold">Pedidos Especiales</a>
-            <a href="https://wa.me/595973511110" target="_blank" class="flex items-center justify-center gap-2 w-full bg-emerald-600 text-white font-bold py-3 rounded-xl">
-                <i class="fa-brands fa-whatsapp text-xl"></i>
-                <span>Contacto Directo WhatsApp</span>
-            </a>
+            
+            <div class="pt-2 border-t border-gray-800">
+                <p class="text-xs text-gray-400 font-bold uppercase mb-2">Elegir Vendedor:</p>
+                <div class="grid grid-cols-2 gap-2">
+                    <a href="https://wa.me/595973511110" target="_blank" class="bg-emerald-600 text-white font-bold py-2 px-3 rounded-xl text-xs text-center">Daniel (0973)</a>
+                    <a href="https://wa.me/595987599975" target="_blank" class="bg-emerald-600 text-white font-bold py-2 px-3 rounded-xl text-xs text-center">Matias (0987)</a>
+                </div>
+            </div>
         </div>
     </header>
 
@@ -157,7 +183,7 @@
                     </div>
                 </div>
 
-                <!-- Logo Grande en Hero Banner -->
+                <!-- Logo Grande en Hero Banner con Atención Inmediata desplegable -->
                 <div class="lg:col-span-5 flex justify-center">
                     <div class="relative w-full max-w-md bg-gradient-to-b from-gray-900 to-steel-950 p-8 rounded-3xl border border-fire-500/30 shadow-2xl text-center glow-fire">
                         <div class="w-40 h-40 mx-auto mb-4 relative overflow-hidden rounded-2xl border border-fire-500/40 shadow-md">
@@ -165,9 +191,34 @@
                         </div>
                         <h3 class="font-bebas text-4xl text-white tracking-wider">HERRERÍA DUARTE</h3>
                         <p class="text-fire-500 text-sm font-bold tracking-widest uppercase mb-4">Especialistas en Parrillas</p>
-                        <a href="https://wa.me/595973511110" target="_blank" class="mt-2 inline-flex items-center justify-center gap-2 w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3 rounded-xl transition-all">
-                            <i class="fa-brands fa-whatsapp text-lg"></i><span>Atención Inmediata</span>
-                        </a>
+                        
+                        <!-- BOTÓN ATENCIÓN INMEDIATA (DESPLEGABLE) -->
+                        <div class="relative mt-2">
+                            <button onclick="toggleVendorMenu('hero-vendor-dropdown')" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3 px-4 rounded-xl shadow-lg transition-all flex items-center justify-center gap-2 text-sm">
+                                <i class="fa-brands fa-whatsapp text-lg"></i>
+                                <span>Atención Inmediata</span>
+                                <i class="fa-solid fa-chevron-down text-xs"></i>
+                            </button>
+                            <!-- Menú desplegable Hero -->
+                            <div id="hero-vendor-dropdown" class="hidden absolute left-0 right-0 mt-2 bg-steel-900 border border-gray-700 rounded-2xl shadow-2xl p-2 z-50">
+                                <div class="text-[10px] uppercase font-bold text-gray-400 px-3 py-1 text-left">Elige un vendedor:</div>
+                                <a href="https://wa.me/595973511110?text=Hola%20Daniel,%20quiero%20hacer%20una%20consulta." target="_blank" class="flex items-center gap-3 p-2.5 rounded-xl hover:bg-steel-800 transition-colors text-white text-xs font-semibold text-left">
+                                    <i class="fa-brands fa-whatsapp text-emerald-400 text-base"></i>
+                                    <div>
+                                        <div>Daniel</div>
+                                        <div class="text-[10px] text-gray-400">0973 511 110</div>
+                                    </div>
+                                </a>
+                                <a href="https://wa.me/595987599975?text=Hola%20Matias,%20quiero%20hacer%20una%20consulta." target="_blank" class="flex items-center gap-3 p-2.5 rounded-xl hover:bg-steel-800 transition-colors text-white text-xs font-semibold text-left">
+                                    <i class="fa-brands fa-whatsapp text-emerald-400 text-base"></i>
+                                    <div>
+                                        <div>Matias</div>
+                                        <div class="text-[10px] text-gray-400">0987 599 975</div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -263,9 +314,27 @@
                         <label class="block text-xs font-bold text-gray-300 uppercase mb-1">Detalles Adicionales</label>
                         <textarea id="custom-notes" rows="3" placeholder="Describe los detalles que deseas..." class="w-full bg-steel-900 border border-gray-700 rounded-xl p-3 text-sm text-white focus:outline-none focus:border-fire-500"></textarea>
                     </div>
-                    <button type="submit" class="w-full bg-fire-gradient hover:opacity-90 text-white font-bold py-4 rounded-xl shadow-lg glow-fire transition-all flex items-center justify-center gap-3 text-base">
-                        <i class="fa-brands fa-whatsapp text-xl"></i><span>Enviar Solicitud por WhatsApp</span>
-                    </button>
+                    
+                    <!-- BOTÓN ENVIAR SOLICITUD CON DOS VENDEDORES -->
+                    <div>
+                        <label class="block text-xs font-bold text-fire-500 uppercase mb-2 text-center">👇 Elige con qué vendedor enviar tu solicitud 👇</label>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <button type="button" onclick="submitCustomVendor('595973511110', 'Daniel')" class="bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3.5 px-4 rounded-xl shadow-lg transition-all flex items-center justify-center gap-2 text-sm">
+                                <i class="fa-brands fa-whatsapp text-xl"></i>
+                                <div class="text-left leading-tight">
+                                    <div class="text-[10px] text-emerald-200 uppercase font-semibold">Enviar a</div>
+                                    <div>Daniel (0973 511)</div>
+                                </div>
+                            </button>
+                            <button type="button" onclick="submitCustomVendor('595987599975', 'Matias')" class="bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3.5 px-4 rounded-xl shadow-lg transition-all flex items-center justify-center gap-2 text-sm">
+                                <i class="fa-brands fa-whatsapp text-xl"></i>
+                                <div class="text-left leading-tight">
+                                    <div class="text-[10px] text-emerald-200 uppercase font-semibold">Enviar a</div>
+                                    <div>Matias (0987 599)</div>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>
@@ -310,7 +379,7 @@
     <footer class="bg-steel-950 text-gray-400 py-12 border-t border-gray-900">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-xs">
             <p class="mb-2 font-bold text-white text-sm">DUARTE - FÁBRICA DE PARRILLAS © 2026</p>
-            <p>Envíos a todo el Paraguay | Atención por WhatsApp: (0973) 511 110</p>
+            <p>Envíos a todo el Paraguay | Atención WhatsApp: Daniel (0973) 511 110 - Matias (0987) 599 975</p>
         </div>
     </footer>
 
@@ -357,7 +426,7 @@
                     </div>
                 </div>
 
-                <!-- SELECCIÓN DE VENDEDOR -->
+                <!-- SELECCIÓN DE VENDEDOR PARA EL CARRITO -->
                 <div class="pt-2">
                     <label class="block text-xs font-bold text-fire-500 uppercase mb-2 text-center">👇 Elige con qué vendedor realizar tu pedido 👇</label>
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -382,9 +451,29 @@
     </div>
 
     <!-- FLOATING WHATSAPP -->
-    <a href="https://wa.me/595973511110?text=Hola%20F%C3%A1brica%20Duarte,%20deseo%20hacer%20una%20consulta" target="_blank" rel="noopener noreferrer" class="fixed bottom-6 right-6 z-40 bg-emerald-500 hover:bg-emerald-400 text-white w-14 h-14 rounded-full shadow-2xl flex items-center justify-center text-3xl transition-transform hover:scale-110 glow-fire">
-        <i class="fa-brands fa-whatsapp"></i>
-    </a>
+    <div class="fixed bottom-6 right-6 z-40 relative">
+        <button onclick="toggleVendorMenu('float-vendor-dropdown')" class="bg-emerald-500 hover:bg-emerald-400 text-white w-14 h-14 rounded-full shadow-2xl flex items-center justify-center text-3xl transition-transform hover:scale-110 glow-fire">
+            <i class="fa-brands fa-whatsapp"></i>
+        </button>
+        <!-- Menú flotante -->
+        <div id="float-vendor-dropdown" class="hidden absolute bottom-16 right-0 w-56 bg-steel-900 border border-gray-700 rounded-2xl shadow-2xl p-2 z-50">
+            <div class="text-[10px] uppercase font-bold text-gray-400 px-3 py-1">Contactar con:</div>
+            <a href="https://wa.me/595973511110?text=Hola%20Daniel,%20deseo%20hacer%20una%20consulta." target="_blank" class="flex items-center gap-3 p-2.5 rounded-xl hover:bg-steel-800 transition-colors text-white text-xs font-semibold">
+                <i class="fa-brands fa-whatsapp text-emerald-400 text-base"></i>
+                <div>
+                    <div>Daniel</div>
+                    <div class="text-[10px] text-gray-400">0973 511 110</div>
+                </div>
+            </a>
+            <a href="https://wa.me/595987599975?text=Hola%20Matias,%20deseo%20hacer%20una%20consulta." target="_blank" class="flex items-center gap-3 p-2.5 rounded-xl hover:bg-steel-800 transition-colors text-white text-xs font-semibold">
+                <i class="fa-brands fa-whatsapp text-emerald-400 text-base"></i>
+                <div>
+                    <div>Matias</div>
+                    <div class="text-[10px] text-gray-400">0987 599 975</div>
+                </div>
+            </a>
+        </div>
+    </div>
 
     <!-- JAVASCRIPT APP LOGIC -->
     <script>
@@ -443,6 +532,26 @@
 
         function formatGs(amount) {
             return new Intl.NumberFormat('es-PY').format(amount) + ' Gs.';
+        }
+
+        function toggleVendorMenu(dropdownId) {
+            // Cerrar todos los demás desplegables primero
+            ['nav-vendor-dropdown', 'hero-vendor-dropdown', 'float-vendor-dropdown'].forEach(id => {
+                if (id !== dropdownId) {
+                    document.getElementById(id).classList.add('hidden');
+                }
+            });
+            document.getElementById(dropdownId).classList.toggle('hidden');
+        }
+
+        // Cerrar menús al hacer clic fuera
+        window.onclick = function(event) {
+            if (!event.target.closest('.relative')) {
+                ['nav-vendor-dropdown', 'hero-vendor-dropdown', 'float-vendor-dropdown'].forEach(id => {
+                    const el = document.getElementById(id);
+                    if (el) el.classList.add('hidden');
+                });
+            }
         }
 
         function renderProducts() {
@@ -664,22 +773,27 @@
             window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(msg)}`, '_blank');
         }
 
-        function submitCustomOrder(e) {
-            e.preventDefault();
+        function submitCustomVendor(phoneNumber, vendorName) {
             const name = document.getElementById('custom-name').value;
             const city = document.getElementById('custom-city').value;
+
+            if (!name || !city) {
+                alert('Por favor completa tu Nombre y tu Ciudad antes de enviar la solicitud.');
+                return;
+            }
+
             const width = document.getElementById('custom-width').value || 'A definir';
             const depth = document.getElementById('custom-depth').value || 'A definir';
             const type = document.getElementById('custom-type').value;
             const notes = document.getElementById('custom-notes').value || 'Sin detalles';
 
-            let msg = `🛠️ *SOLICITUD DE PARRILLA A MEDIDA* 🛠️\n\n`;
+            let msg = `🛠️ *SOLICITUD DE PARRILLA A MEDIDA (Vendedor ${vendorName})* 🛠️\n\n`;
             msg += `👤 *Cliente:* ${name}\n`;
             msg += `📍 *Ciudad:* ${city}\n`;
             msg += `📐 *Medidas:* Ancho: ${width} | Prof: ${depth}\n`;
             msg += `🔥 *Tipo:* ${type}\n`;
             msg += `📝 *Detalles:* ${notes}\n`;
-            window.open(`https://wa.me/595973511110?text=${encodeURIComponent(msg)}`, '_blank');
+            window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(msg)}`, '_blank');
         }
 
         function toggleMobileMenu() {
