@@ -171,7 +171,7 @@
                         POTENCIA • DURABILIDAD <span class="text-transparent bg-clip-text bg-fire-gradient">CALIDAD</span>
                     </h1>
                     <p class="text-gray-300 text-base sm:text-lg max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-                        Fabricamos las mejores parrillas motorizadas, asaditeras, tambores, fogones y tatakua de Paraguay. Diseñadas para resistir el uso intensivo y garantizar el mejor asado en tu quincho.
+                        Fabricamos las mejores parrillas motorizadas, asaditeras, tambores, fogones y tatakua de Paraguay[cite: 3]. Diseñadas para resistir el uso intensivo y garantizar el mejor asado en tu quincho.
                     </p>
                     <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-4">
                         <a href="#catalogo" class="bg-fire-gradient hover:opacity-90 text-white font-bold py-3.5 px-8 rounded-xl shadow-lg glow-fire transition-all flex items-center gap-3">
@@ -354,7 +354,7 @@
                     <ul class="text-sm text-gray-300 space-y-2">
                         <li><i class="fa-solid fa-check text-fire-500 mr-2"></i>Retiro en local de fábrica</li>
                         <li><i class="fa-solid fa-check text-fire-500 mr-2"></i>Servicio de Delivery Local</li>
-                        <li><i class="fa-solid fa-check text-fire-500 mr-2"></i>Envíos por Transportadora a todo Paraguay</li>
+                        <li><i class="fa-solid fa-check text-fire-500 mr-2"></i>Envíos por Transportadora a todo Paraguay[cite: 3]</li>
                     </ul>
                 </div>
                 <div class="bg-steel-card p-6 rounded-2xl border border-gray-800">
@@ -379,7 +379,7 @@
     <footer class="bg-steel-950 text-gray-400 py-12 border-t border-gray-900">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-xs">
             <p class="mb-2 font-bold text-white text-sm">DUARTE - FÁBRICA DE PARRILLAS © 2026</p>
-            <p>Envíos a todo el Paraguay | Atención WhatsApp: Daniel (0973) 511 110 - Matias (0987) 599 975</p>
+            <p>Envíos a todo el Paraguay[cite: 3] | Atención WhatsApp: Daniel (0973) 511 110 - Matias (0987) 599 975</p>
         </div>
     </footer>
 
@@ -446,6 +446,36 @@
                         </button>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL DE SELECCIÓN DE VENDEDOR PARA CADA PRODUCTO ("PEDIR YA") -->
+    <div id="product-whatsapp-modal" class="hidden fixed inset-0 z-50 overflow-y-auto bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-steel-950 border border-fire-500/50 rounded-3xl max-w-md w-full p-6 relative shadow-2xl text-center">
+            <button onclick="closeProductWhatsappModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white p-2"><i class="fa-solid fa-xmark text-xl"></i></button>
+            <div class="w-12 h-12 bg-emerald-500/20 text-emerald-400 rounded-full flex items-center justify-center text-2xl mx-auto mb-3">
+                <i class="fa-brands fa-whatsapp"></i>
+            </div>
+            <h3 class="font-bebas text-3xl text-white tracking-wide mb-1">¡Hacer Pedido Rápido!</h3>
+            <p id="modal-product-info" class="text-xs text-gray-300 mb-6 font-semibold"></p>
+            
+            <p class="text-xs font-bold text-gray-400 uppercase mb-3">Elige a qué vendedor enviar el mensaje:</p>
+            <div class="space-y-3">
+                <button type="button" onclick="confirmProductVendor('595973511110')" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3 px-4 rounded-xl shadow-lg transition-all flex items-center justify-center gap-3 text-sm">
+                    <i class="fa-brands fa-whatsapp text-xl"></i>
+                    <div class="text-left">
+                        <div>Vendedor Daniel</div>
+                        <div class="text-[10px] text-emerald-200">0973 511 110</div>
+                    </div>
+                </button>
+                <button type="button" onclick="confirmProductVendor('595987599975')" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3 px-4 rounded-xl shadow-lg transition-all flex items-center justify-center gap-3 text-sm">
+                    <i class="fa-brands fa-whatsapp text-xl"></i>
+                    <div class="text-left">
+                        <div>Vendedor Matias</div>
+                        <div class="text-[10px] text-emerald-200">0987 599 975</div>
+                    </div>
+                </button>
             </div>
         </div>
     </div>
@@ -529,13 +559,13 @@
         let currentCategory = 'all';
         let searchQuery = '';
         let cart = [];
+        let selectedProductForWhatsapp = null;
 
         function formatGs(amount) {
             return new Intl.NumberFormat('es-PY').format(amount) + ' Gs.';
         }
 
         function toggleVendorMenu(dropdownId) {
-            // Cerrar todos los demás desplegables primero
             ['nav-vendor-dropdown', 'hero-vendor-dropdown', 'float-vendor-dropdown'].forEach(id => {
                 if (id !== dropdownId) {
                     document.getElementById(id).classList.add('hidden');
@@ -544,7 +574,6 @@
             document.getElementById(dropdownId).classList.toggle('hidden');
         }
 
-        // Cerrar menús al hacer clic fuera
         window.onclick = function(event) {
             if (!event.target.closest('.relative')) {
                 ['nav-vendor-dropdown', 'hero-vendor-dropdown', 'float-vendor-dropdown'].forEach(id => {
@@ -552,6 +581,26 @@
                     if (el) el.classList.add('hidden');
                 });
             }
+        }
+
+        function openProductWhatsappModal(productId) {
+            selectedProductForWhatsapp = productsData.find(p => p.id === productId);
+            if (!selectedProductForWhatsapp) return;
+            document.getElementById('modal-product-info').innerText = `${selectedProductForWhatsapp.title} (Cód. ${selectedProductForWhatsapp.code}) - ${formatGs(selectedProductForWhatsapp.price)}`;
+            document.getElementById('product-whatsapp-modal').classList.remove('hidden');
+        }
+
+        function closeProductWhatsappModal() {
+            document.getElementById('product-whatsapp-modal').classList.add('hidden');
+            selectedProductForWhatsapp = null;
+        }
+
+        function confirmProductVendor(phoneNumber) {
+            if (!selectedProductForWhatsapp) return;
+            const p = selectedProductForWhatsapp;
+            const msg = `Hola Duarte Fábrica de Parrillas, estoy interesado en el producto: ${p.title} (CÓDIGO ${p.code}) de ${formatGs(p.price)}. ¿Tienen disponible?`;
+            window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(msg)}`, '_blank');
+            closeProductWhatsappModal();
         }
 
         function renderProducts() {
@@ -598,9 +647,9 @@
                         <button onclick="addToCart('${p.id}')" class="bg-steel-800 hover:bg-gray-700 text-white font-bold py-2.5 px-3 rounded-xl text-xs flex items-center justify-center gap-1.5 transition-colors">
                             <i class="fa-solid fa-cart-plus text-fire-500"></i><span>Agregar</span>
                         </button>
-                        <a href="https://wa.me/595973511110?text=${encodeURIComponent(`Hola Duarte Fábrica de Parrillas, estoy interesado en el producto: ${p.title} (CÓDIGO ${p.code}) de ${formatGs(p.price)}. ¿Tienen disponible?`)}" target="_blank" class="bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-2.5 px-3 rounded-xl text-xs flex items-center justify-center gap-1.5 transition-colors">
+                        <button onclick="openProductWhatsappModal('${p.id}')" class="bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-2.5 px-3 rounded-xl text-xs flex items-center justify-center gap-1.5 transition-colors">
                             <i class="fa-brands fa-whatsapp text-sm"></i><span>Pedir YA[cite: 3]</span>
-                        </a>
+                        </button>
                     </div>
                 </div>
             `).join('');
@@ -630,9 +679,9 @@
                         </ul>
                         <div class="grid grid-cols-2 gap-3">
                             <button onclick="addToCart('${p.id}'); closeProductModal();" class="bg-fire-gradient text-white font-bold py-3 rounded-xl text-sm shadow-lg glow-fire"><i class="fa-solid fa-cart-plus mr-1"></i> Agregar</button>
-                            <a href="https://wa.me/595973511110?text=${encodeURIComponent(`Hola Duarte Fábrica de Parrillas, quiero más información del producto: ${p.title} (CÓDIGO ${p.code})`)}" target="_blank" class="bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3 rounded-xl text-sm text-center flex items-center justify-center gap-2">
+                            <button onclick="closeProductModal(); openProductWhatsappModal('${p.id}');" class="bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3 rounded-xl text-sm text-center flex items-center justify-center gap-2">
                                 <i class="fa-brands fa-whatsapp text-lg"></i> Consultar
-                            </a>
+                            </button>
                         </div>
                     </div>
                 </div>
