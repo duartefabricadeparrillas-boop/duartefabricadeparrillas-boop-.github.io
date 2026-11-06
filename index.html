@@ -327,7 +327,8 @@
                 <span class="text-gray-400 font-semibold">Total Estimado:</span>
                 <span id="cart-total-price" class="text-2xl font-black text-fire-500">0 Gs.</span>
             </div>
-            <form id="checkout-form" onsubmit="submitCartWhatsApp(event)" class="space-y-4">
+            
+            <div class="space-y-4">
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>
                         <label class="block text-xs font-bold text-gray-300 uppercase mb-1">Tu Nombre *</label>
@@ -355,10 +356,28 @@
                         </select>
                     </div>
                 </div>
-                <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3.5 rounded-xl shadow-lg transition-all flex items-center justify-center gap-2 text-base mt-4">
-                    <i class="fa-brands fa-whatsapp text-xl"></i><span>Confirmar y Enviar a WhatsApp[cite: 3]</span>
-                </button>
-            </form>
+
+                <!-- SELECCIÓN DE VENDEDOR -->
+                <div class="pt-2">
+                    <label class="block text-xs font-bold text-fire-500 uppercase mb-2 text-center">👇 Elige con qué vendedor realizar tu pedido 👇</label>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <button type="button" onclick="sendToVendor('595973511110', 'Daniel')" class="bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3 px-4 rounded-xl shadow-lg transition-all flex items-center justify-center gap-2 text-sm">
+                            <i class="fa-brands fa-whatsapp text-xl"></i>
+                            <div class="text-left leading-tight">
+                                <div class="text-[10px] text-emerald-200 uppercase font-semibold">Vendedor</div>
+                                <div>Daniel (0973 511)</div>
+                            </div>
+                        </button>
+                        <button type="button" onclick="sendToVendor('595987599975', 'Matias')" class="bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3 px-4 rounded-xl shadow-lg transition-all flex items-center justify-center gap-2 text-sm">
+                            <i class="fa-brands fa-whatsapp text-xl"></i>
+                            <div class="text-left leading-tight">
+                                <div class="text-[10px] text-emerald-200 uppercase font-semibold">Vendedor</div>
+                                <div>Matias (0987 599)</div>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -614,19 +633,24 @@
             else modal.classList.toggle('hidden');
         }
 
-        function submitCartWhatsApp(e) {
-            e.preventDefault();
+        function sendToVendor(phoneNumber, vendorName) {
             if (cart.length === 0) {
                 alert('Tu pedido está vacío.');
                 return;
             }
             const name = document.getElementById('order-name').value;
             const location = document.getElementById('order-location').value;
+
+            if (!name || !location) {
+                alert('Por favor completa tu Nombre y tu Ciudad/Dirección antes de enviar el pedido.');
+                return;
+            }
+
             const payment = document.getElementById('order-payment').value;
             const shipping = document.getElementById('order-shipping').value;
             const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
 
-            let msg = `🔥 *NUEVO PEDIDO - DUARTE FÁBRICA DE PARRILLAS* 🔥\n\n`;
+            let msg = `🔥 *NUEVO PEDIDO PARA VENDEDOR ${vendorName.toUpperCase()}* 🔥\n\n`;
             msg += `👤 *Cliente:* ${name}\n`;
             msg += `📍 *Ubicación:* ${location}\n`;
             msg += `💳 *Pago:* ${payment}\n`;
@@ -636,7 +660,8 @@
                 msg += `${index + 1}. *${item.title}* (Cód. ${item.code}) - Cant: ${item.quantity} - Subtotal: ${formatGs(item.price * item.quantity)}\n`;
             });
             msg += `\n💰 *TOTAL:* ${formatGs(total)}\n`;
-            window.open(`https://wa.me/595973511110?text=${encodeURIComponent(msg)}`, '_blank');
+            
+            window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(msg)}`, '_blank');
         }
 
         function submitCustomOrder(e) {
