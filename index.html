@@ -45,6 +45,11 @@
             background-color: #0c0e12;
             color: #e5e7eb;
         }
+        /* Optimización para forzar mayor nitidez en las imágenes */
+        img {
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+        }
         .font-bebas {
             font-family: 'Bebas Neue', cursive;
         }
@@ -504,11 +509,8 @@
 
     <!-- JAVASCRIPT APP LOGIC -->
     <script>
-        // MAPA DE IMÁGENES: Reemplaza las URLs marcadas con 'i.ibb.co' por los enlaces directos copiado desde ImgBB
         const productImages = {
-            
-          
-          "Inox-001": "https://i.ibb.co/RT9yr584/inox-001.jpg",// Reemplazar por tu direct link i.ibb.co
+          "Inox-001": "https://i.ibb.co/RT9yr584/inox-001.jpg",
           "Inox-002": "https://i.ibb.co/Hfk97K5p/inox-002.jpg",
           "Inox-003": "https://i.ibb.co/twQjjP7M/inox-003.jpg",
           "Inox-004": "https://i.ibb.co/39vhj67L/inox-004.jpg",
